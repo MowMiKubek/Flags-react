@@ -18,12 +18,30 @@ export default function CardsContainer (props) {
             })
     },[])
 
+    flagsData.map(elem => (
+    (elem.capital && elem.capital.length > 1) ? 
+        console.log(elem.name.common, elem.capital)
+        : null
+    ))
+    
     return (
         <>
         <h2>CardsContainer</h2>
         {flagsData.length
             ? flagsData.map(elem => (
-                <Card key={elem.cca2} src={elem.flags.png} alt={elem.flags.alt} />
+                <Card
+                    key={elem.cca2} 
+                    src={elem.flags.png} 
+                    alt={elem.flags.alt} 
+                    name={elem.name.common}
+                    population={elem.population}
+                    region={elem.region}
+                    capital={
+                        (elem.capital && elem.capital.length > 1)
+                        ? elem.capital.join(' ')
+                        : elem.capital
+                    }
+                    />
             ))
             : <p>Jeszcze nic tu nie ma</p>
         }
