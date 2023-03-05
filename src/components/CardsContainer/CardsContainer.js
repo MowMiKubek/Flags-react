@@ -2,6 +2,8 @@ import Card from './Card/Card'
 import axios from 'axios'
 import { useState, useEffect } from 'react'
 
+import styles from './styles.module.css'
+
 const fetchElements = async () => {
     const result = await axios.get('https://restcountries.com/v3.1/all')
     return result.data;
@@ -24,10 +26,8 @@ export default function CardsContainer (props) {
         : null
     ))
     
-    return (
-        <>
-        <h2>CardsContainer</h2>
-        {flagsData.length
+    const content = (
+        flagsData.length
             ? flagsData.map(elem => (
                 <Card
                     key={elem.cca2} 
@@ -44,7 +44,12 @@ export default function CardsContainer (props) {
                     />
             ))
             : <p>Jeszcze nic tu nie ma</p>
-        }
-        </>
+    )
+
+    return (
+        <div className={`${styles.cardContainer}`}>
+            {/* <h2>CardsContainer</h2> */}
+            {content}
+        </div>
     )
 }
