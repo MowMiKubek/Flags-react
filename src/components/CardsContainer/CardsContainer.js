@@ -47,7 +47,7 @@ export default function CardsContainer (props) {
                     }
                     />
             ))
-            : <p>Jeszcze nic tu nie ma</p>
+            : <h3>Countries not found</h3>
     )
 
     return (
