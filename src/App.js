@@ -9,15 +9,21 @@ import Navbar from './components/Navbar/Navbar';
 function App() {
   const [flagsData, setFlagsData] = useState({})
   const [searchValue, setSearchValue] = useState('')
+  const [region, setRegion] = useState('')
 
   return (
     <>
       <Header />
-      <Navbar text={searchValue} setText={setSearchValue} />
+      <Navbar 
+        text={searchValue} 
+        setText={setSearchValue} 
+        region={region} 
+        setRegion={setRegion} />
       <CardsContainer 
         flagsData={flagsData} 
         setFlagsData={setFlagsData} 
-        filter={searchValue} />
+        filter={searchValue} 
+        region={region}/>
     </>
   );
 }

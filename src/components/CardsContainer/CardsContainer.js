@@ -21,12 +21,14 @@ export default function CardsContainer (props) {
                     console.log(backedData)
                 })
         } else {
-            const filteredData = backedData.filter(x => 
+            let filteredData = backedData.filter(x => 
                 x.name.common.toLowerCase().includes(props.filter.toLowerCase())
             )
+            if(props.region !== '')
+                filteredData = filteredData.filter(x => x.continents.includes(props.region))
             props.setFlagsData(filteredData)
         }
-    },[props.filter])
+    },[props.filter, props.region])
     
     const content = (
         props.flagsData.length
