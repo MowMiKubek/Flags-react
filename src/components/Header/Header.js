@@ -8,6 +8,7 @@ export default function Header (props) {
                     <img 
                     src={Logo}
                     style={{transform: "scale(1.5) translate(-4px, -2px)"}}
+                    alt="theme"
                     />
                     Dark mode
                 </h2>
