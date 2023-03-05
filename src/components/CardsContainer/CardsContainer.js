@@ -9,26 +9,28 @@ const fetchElements = async () => {
     return result.data;
 }
 
+var backedData = []
+
 export default function CardsContainer (props) {
-    const [flagsData, setFlagsData] = useState([]);
-
     useEffect(() => {
-       fetchElements()
-            .then(contentData => {
-                console.log(contentData)
-                setFlagsData(contentData)
-            })
-    },[])
-
-    flagsData.map(elem => (
-    (elem.capital && elem.capital.length > 1) ? 
-        console.log(elem.name.common, elem.capital)
-        : null
-    ))
+        if (backedData.length === 0) {
+            fetchElements()
+                .then(contentData => {
+                    backedData = contentData
+                    props.setFlagsData(contentData)
+                    console.log(backedData)
+                })
+        } else {
+            const filteredData = backedData.filter(x => 
+                x.name.common.toLowerCase().includes(props.filter.toLowerCase())
+            )
+            props.setFlagsData(filteredData)
+        }
+    },[props.filter])
     
     const content = (
-        flagsData.length
-            ? flagsData.map(elem => (
+        props.flagsData.length
+            ? props.flagsData.map(elem => (
                 <Card
                     key={elem.cca2} 
                     src={elem.flags.png} 
